@@ -6,9 +6,9 @@ import {
   Route,
 } from 'react-router-dom'
 
-// import Home from './views/Home'
-// import Shop from './views/Shop'
-// import Cart from './views/Cart'
+import Title from './views/Title'
+import Play from './views/Play'
+import GameOver from './views/GameOver'
 
 
 function App() {
@@ -17,9 +17,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/cart" element={<Cart />} /> */}
+          <Route path="/" element={<Title />} />
+          <Route path="/play" element={<Play />} />
+          <Route path="/game-over" element={<GameOver />} />
         </Routes>
       </BrowserRouter>
     </>
