@@ -9,6 +9,7 @@
         background: #113E53;
         @include mixins.default-grid;
         grid-template-rows: repeat(2, max-content);
+        position: relative;
     }
 
     &__text{
@@ -18,7 +19,7 @@
         &_title{
             text-transform: uppercase;
             font-family: var(--title);
-            margin-top: 8rem;
+            margin-top: 6.65%;
             font-size: 5rem;
         }
 
@@ -33,21 +34,19 @@
         @include mixins.default-img;
         width: 40rem;
         justify-self: center;
-        margin-top: 4.5rem;
-        position: relative;
+        top: 40%;
+        position: absolute;
         z-index: 1;
     }
 
     &__image-background{
         position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+        justify-self: center;
         background: white;
         height: 24.5rem;
         width: 24.5rem;
         border-radius: 999rem;
-        margin-top: 4rem;
+        top: 39%;
     }
 
 }
