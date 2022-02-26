@@ -1,0 +1,53 @@
+@use 'variables';
+@use 'mixins';
+
+.title-screen{
+    @include mixins.default-grid;
+
+    &__link{
+        height: 100vh;
+        background: #113E53;
+        @include mixins.default-grid;
+        grid-template-rows: repeat(2, max-content);
+    }
+
+    &__text{
+        color: white;
+        text-align: center;
+
+        &_title{
+            text-transform: uppercase;
+            font-family: var(--title);
+            margin-top: 8rem;
+            font-size: 5rem;
+        }
+
+        &_subtitle{
+            font-size: 4.35rem;
+            margin-top: 0.45rem;
+            font-family: var(--handwriting);
+        }
+    }
+
+    &__image{
+        @include mixins.default-img;
+        width: 40rem;
+        justify-self: center;
+        margin-top: 4.5rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__image-background{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        height: 24.5rem;
+        width: 24.5rem;
+        border-radius: 999rem;
+        margin-top: 4rem;
+    }
+
+}

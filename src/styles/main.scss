@@ -8,8 +8,9 @@ TABLE OF CONTENTS:
 
 0. Initialization
 1. Partials
-2. General
-3. Utility
+2. Fonts
+3. General
+4. Utility
 
 ==============================================
 */
@@ -20,10 +21,14 @@ TABLE OF CONTENTS:
 @use 'mixins';
 
 /* 1. Partials =============================== */
+@use 'title';
 
 
+/* 2. Fonts ================================== */
+@import url(https://fonts.googleapis.com/css2?family=Gugi&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Yellowtail&display=swap);
 
-/* 2. General ================================ */
+/* 3. General ================================ */
 
 *, *::before, *::after {
 	box-sizing: border-box;
@@ -44,7 +49,7 @@ body{
 
 
 
-/* 3. Utility ================================ */
+/* 4. Utility ================================ */
 
 .hidden{
 	display: none;
