@@ -6,7 +6,7 @@
 
     &__link{
         height: 100vh;
-        background: #113E53;
+        background: var(--bg-color);
         @include mixins.default-grid;
         grid-template-rows: repeat(2, max-content);
         position: relative;

@@ -1,0 +1,102 @@
+@use 'variables';
+@use 'mixins';
+
+.map{
+    @include mixins.default-grid;
+    background: var(--bg-color);
+    height: 100vh;
+
+    &__container{
+        @include mixins.default-grid;
+        background-color: white;
+        padding: 1rem;
+        border-radius: 0.7rem;
+        width: max-content;
+        height: max-content;
+        margin-top: 6.65%;
+        justify-self: center;
+    }
+
+    &__header{
+        display: flex;
+        justify-self: center;
+    }
+
+    &__title{
+        @include mixins.map-element;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-right: 0.25rem;
+    }
+
+    &__legend{
+        display: flex;
+        justify-self: center;
+        @include mixins.map-element;
+    }
+
+    &__caption{
+        margin: 0 1.5rem 0 0.25rem;
+    }
+
+    &__dot{
+        width: 1rem;
+        height: 1rem;
+        border-radius: 999rem;
+        border: 1px solid white;
+
+        &_civilian{
+            background: green;
+        }
+
+        &_nebula{
+            background: purple;
+        }
+
+        &_hostile{
+            background: red;
+        }
+
+        @include mixins.dot-positions;
+    }
+
+    &__display{
+        @include mixins.default-grid;
+        grid-template-columns: 0.1fr 0.5fr 0.1fr 0.5fr 0.1fr 0.5fr 0.1fr 0.5fr 0.1fr 0.5fr 0.1fr;
+        grid-template-rows: repeat(9, 1rem);
+
+
+        @include mixins.map-element;
+        padding: 1rem;
+        margin-top: 0.5rem;
+
+        .map__dot{
+            cursor: pointer;
+        }
+    }
+
+    &__line{
+        background: white;
+        height: 1px;
+        width: 100%;
+
+        @include mixins.line-positions;
+
+        &_up{
+            transform: rotate(-23deg) scale(1.1);
+            margin-top: 0.5rem;
+        }
+
+        &_down{
+            transform: rotate(23deg) scale(1.1);
+            margin-top: 0.5rem;
+        }
+
+        &_across{
+            align-self: center;
+        }
+    }
+
+    
+}
+
