@@ -7,7 +7,8 @@ import {
 } from 'react-router-dom'
 
 import Title from './views/Title'
-import Play from './views/Play'
+import Map from './views/Map'
+import Encounter from './views/Encounter'
 import GameOver from './views/GameOver'
 
 
@@ -18,7 +19,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Title />} />
-          <Route path="/play" element={<Play />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/encounter" element={<Encounter />} />
           <Route path="/game-over" element={<GameOver />} />
         </Routes>
       </BrowserRouter>

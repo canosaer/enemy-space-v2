@@ -3,7 +3,7 @@ import {Context} from '../store/store'
 // import ShortUniqueId from 'short-unique-id'
 // import { sortByKey, addItemToCart } from '../utilities'
 
-export default function Play() {
+export default function Map() {
     const [state, dispatch] = useContext(Context)
    
     // const uid = new ShortUniqueId({length:10})
@@ -11,7 +11,7 @@ export default function Play() {
 
 
     return(
-        <main className="play">
+        <main className="map">
 
             
         </main>
