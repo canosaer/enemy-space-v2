@@ -57,6 +57,10 @@
             background: red;
         }
 
+        &_1{
+            border: 2px solid yellow;
+        }
+
         @include mixins.dot-positions;
     }
 
@@ -67,12 +71,8 @@
 
 
         @include mixins.map-element;
-        padding: 1rem;
+        padding: 1.75rem 1rem;
         margin-top: 0.5rem;
-
-        .map__dot{
-            cursor: pointer;
-        }
     }
 
     &__line{
