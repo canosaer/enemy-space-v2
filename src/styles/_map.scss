@@ -3,7 +3,6 @@
 
 .map{
     @include mixins.default-grid;
-    background: var(--bg-color);
     height: 100vh;
 
     &__container{

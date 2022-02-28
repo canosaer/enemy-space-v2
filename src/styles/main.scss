@@ -23,11 +23,12 @@ TABLE OF CONTENTS:
 /* 1. Partials =============================== */
 @use 'title';
 @use 'map';
-
+@use 'encounter';
 
 /* 2. Fonts ================================== */
 @import url(https://fonts.googleapis.com/css2?family=Gugi&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Yellowtail&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
 
 /* 3. General ================================ */
 
@@ -46,6 +47,8 @@ body{
 
 #root{
   @include mixins.default-grid;
+  background: var(--bg-color);
+  color: white;
 }
 
 

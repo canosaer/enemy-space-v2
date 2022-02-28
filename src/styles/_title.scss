@@ -6,7 +6,6 @@
 
     &__link{
         height: 100vh;
-        background: var(--bg-color);
         @include mixins.default-grid;
         grid-template-rows: repeat(2, max-content);
         position: relative;
@@ -19,8 +18,12 @@
         &_title{
             text-transform: uppercase;
             font-family: var(--title);
-            margin-top: 6.65%;
             font-size: 5rem;
+            margin-top: 3.25rem;
+
+            @include mixins.landscape{
+                margin-top: 5.25rem;
+            }
         }
 
         &_subtitle{
@@ -34,9 +37,14 @@
         @include mixins.default-img;
         width: 40rem;
         justify-self: center;
-        top: 40%;
         position: absolute;
         z-index: 1;
+        top: 18rem;
+
+        @include mixins.landscape{
+            top: 20rem;
+        }
+        
     }
 
     &__image-background{
@@ -46,7 +54,11 @@
         height: 24.5rem;
         width: 24.5rem;
         border-radius: 999rem;
-        top: 39%;
+        top: 17.5rem;
+
+        @include mixins.landscape{
+            top: 19.5rem;
+        }
     }
 
 }
