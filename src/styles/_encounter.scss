@@ -5,7 +5,6 @@
     @include mixins.default-grid;
     grid-template-columns: 16rem minmax(auto, 47rem);
     grid-auto-rows: max-content;
-    height: 100vh;
 
     @include mixins.medium-screen{
         grid-template-columns: 0.5fr 16rem minmax(auto, 47rem) 0.5fr;
@@ -105,7 +104,7 @@
     &__text{
         background: white;
         color: var(--bg-color);
-        margin: 0 1.5rem 0 0;
+        margin: 0 1.5rem 2.5rem 0;
         border-radius: 0.7rem;
         padding: 0.75rem;
         text-align: center;

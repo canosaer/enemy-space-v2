@@ -49,6 +49,7 @@ body{
   @include mixins.default-grid;
   background: var(--bg-color);
   color: white;
+  min-height: 100vh;
 }
 
 
