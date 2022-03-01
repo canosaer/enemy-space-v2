@@ -15,10 +15,21 @@ export default function EncounterScene() {
                     <button className="scene__button scene__button_action scene__button_a">Fire Your Weapons</button>
                     <button className="scene__button scene__button_action scene__button_b">Take Evasive Manuevers</button>
                 </div>
-                <div className="resolution">
-                    <p className="resolution__text scene__resolution_a_success">You unleash a volley of missiles directly into the starspawn's gaping maw. It reels in pain and slinks away, allowing you to continue on your way. </p>
-                    <button className="scene__button scene__button_continue">Continue</button>
-                </div>
+                <section className="resolution">
+                    <div className="resolution__a resolution__a_success">
+                        <p className="resolution__text">You unleash a volley of missiles directly into the starspawn's gaping maw. It reels in pain and slinks away, allowing you to continue on your way.</p>
+                    </div>
+                    <div className="resolution__a resolution__a_failure hidden">
+                        <p className="resolution__text">You unleash a volley of missiles that detonate across the starspawn's thick hide and it pulls back in pain. Deciding your ship is not food, it rams you spitfeully as it retreats.</p>                        
+                    </div>
+                    <div className="resolution__b resolution__b_success hidden">
+                        <p className="resolution__text">Your ship swerves to narrowly avoid the attack and you punch the afterburner. The starspawn gives chase, but eventually recedes into the distance behind you.</p>                        
+                    </div>
+                    <div className="resolution__b resolution__b_failure hidden">
+                        <p className="resolution__text">Your ship swerves to avoid the attack. You narrowly miss the jaws of the starspawn, but it gives your ship a jarring sideswipe as it passes by. You manage to punch the afterburner and get away before it can charge you again.</p>                        
+                    </div>
+                </section>
+                <button className="scene__button scene__button_continue">Continue</button>
             </div>
             
         </section>

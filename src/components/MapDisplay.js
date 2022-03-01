@@ -1,9 +1,31 @@
 export default function MapDisplay() {
-    
+
+    const dots = [
+        [
+            {   coord: "1",
+                class: "map__dot map__dot_civilian map__dot_1",
+                interactionClass: "map__dot_current",
+                type: "civilian",
+                connections: ["2a, 3b"],
+            }
+        ],
+        [
+            {   coord: "2a",
+                class: "map__dot map__dot_civilian map__dot_2a",
+                interactionClass: "map__dot_active",
+                type: "civilian",
+                connections: ["2a, 3b"],
+
+            },
+        ]
+    ]
+
+    // const mapCols = [dots1,lines1_2,dots2,lines2_3,dots3,lines3_4,dots4,lines4_5,dots5,lines5_6,dots6]
+
     return (
         <section className="map__display">
 
-            <div className="map__dot map__dot_civilian map__dot_1"></div>
+            <div className="map__dot map__dot_civilian map__dot_1 map__dot_current"></div>
 
             <div className="map__line map__line_up map__line_1-2a"></div>
             <div className="map__line map__line_down map__line_1-2b"></div>
