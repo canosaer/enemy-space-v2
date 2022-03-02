@@ -1,4 +1,5 @@
 import monster from '../img/monster.png'
+import { Link } from 'react-router-dom'
 
 export default function EncounterScene() {
     
@@ -29,7 +30,7 @@ export default function EncounterScene() {
                         <p className="resolution__text">Your ship swerves to avoid the attack. You narrowly miss the jaws of the starspawn, but it gives your ship a jarring sideswipe as it passes by. You manage to punch the afterburner and get away before it can charge you again.</p>                        
                     </div>
                 </section>
-                <button className="scene__button scene__button_continue">Continue</button>
+                <Link to="/map" className="scene__continue">Continue</Link>
             </div>
             
         </section>

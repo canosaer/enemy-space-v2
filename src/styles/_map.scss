@@ -60,6 +60,14 @@
             border: 2px solid yellow;
         }
 
+        &_active{
+            cursor: pointer;
+
+            &:hover{
+                border: 2px solid yellow;
+            }
+        }
+
         @include mixins.dot-positions;
     }
 

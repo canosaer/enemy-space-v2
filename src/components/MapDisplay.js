@@ -1,31 +1,51 @@
+import {dots, lines} from '../store/data'
+import ShortUniqueId from 'short-unique-id'
+import { Link } from 'react-router-dom'
+
 export default function MapDisplay() {
 
-    const dots = [
-        [
-            {   coord: "1",
-                class: "map__dot map__dot_civilian map__dot_1",
-                interactionClass: "map__dot_current",
-                type: "civilian",
-                connections: ["2a, 3b"],
-            }
-        ],
-        [
-            {   coord: "2a",
-                class: "map__dot map__dot_civilian map__dot_2a",
-                interactionClass: "map__dot_active",
-                type: "civilian",
-                connections: ["2a, 3b"],
+    const sectorMap = []
+    const uid = new ShortUniqueId({length:10})
 
-            },
-        ]
-    ]
-
-    // const mapCols = [dots1,lines1_2,dots2,lines2_3,dots3,lines3_4,dots4,lines4_5,dots5,lines5_6,dots6]
+    for(let i=0;i<dots.length;i++){
+        console.log(uid)
+        if(dots[i]){
+            dots[i].forEach(dot => {
+                sectorMap.push(`${dot.class} ${dot.interactionClass}`)
+            });
+        }
+        if(lines[i]){
+            lines[i].forEach(line => {
+                sectorMap.push(line.class)
+            });
+        }
+    }
 
     return (
         <section className="map__display">
 
-            <div className="map__dot map__dot_civilian map__dot_1 map__dot_current"></div>
+            {sectorMap.map((elementClass, i) => {
+                const key = `element--${i}`
+
+                if(elementClass.includes("active")){
+                    return(
+                        <>
+                            <Link key={key} to="/encounter" className={elementClass}></Link>
+                        </>
+                    )
+                }
+                else{
+                    return(
+                        <>
+                            <div key={key} className={elementClass}></div>
+                        </>
+                    )
+                }
+
+                
+            })}
+
+            {/* <div className="map__dot map__dot_civilian map__dot_1 map__dot_current"></div>
 
             <div className="map__line map__line_up map__line_1-2a"></div>
             <div className="map__line map__line_down map__line_1-2b"></div>
@@ -59,7 +79,7 @@ export default function MapDisplay() {
             <div className="map__line map__line_down map__line_5a-6"></div>
             <div className="map__line map__line_up map__line_5b-6"></div>
 
-            <div className="map__dot map__dot_hostile map__dot_6"></div>
+            <div className="map__dot map__dot_hostile map__dot_6"></div> */}
 
         </section>
     )
