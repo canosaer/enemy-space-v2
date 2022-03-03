@@ -1,85 +1,79 @@
 import {dots, lines} from '../store/data'
-import ShortUniqueId from 'short-unique-id'
+// import ShortUniqueId from 'short-unique-id'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
 
 export default function MapDisplay() {
 
-    const sectorMap = []
-    const uid = new ShortUniqueId({length:10})
+    const [sectorMap, setSectorMap] = useState([])
+    const [current, setCurrent] = useState(1)
 
-    for(let i=0;i<dots.length;i++){
-        console.log(uid)
-        if(dots[i]){
-            dots[i].forEach(dot => {
-                sectorMap.push(`${dot.class} ${dot.interactionClass}`)
+    const buildMap = (path) => {
+        console.log(path)
+        let tempMap = []
+        for(let i=1;i<7;i++){
+            dots.forEach(dot => {
+                if(dot.coord[0]===i.toString()){
+                    tempMap.push(dot)
+                }
+            });
+            lines.forEach(line => {
+                if(line.path[0]===i.toString()){
+                    if(path && path === line.path){
+                        line.class = line.class + ' map__line_active'
+                    }
+                    if(!path && line.class.includes('active')){
+                        let endSlice = line.class.lastIndexOf('map__line_active')
+                        line.class = line.class.slice(0,endSlice)
+                    }
+                    tempMap.push(line)
+                }
             });
         }
-        if(lines[i]){
-            lines[i].forEach(line => {
-                sectorMap.push(line.class)
-            });
-        }
+        setSectorMap(tempMap)
+    }
+
+    if(!sectorMap[0]){
+        buildMap(null)
     }
 
     return (
         <section className="map__display">
 
-            {sectorMap.map((elementClass, i) => {
+            {sectorMap.map((element, i) => {
                 const key = `element--${i}`
 
-                if(elementClass.includes("active")){
+                if(element.interactionClass && element.interactionClass.includes('active')){
                     return(
                         <>
-                            <Link key={key} to="/encounter" className={elementClass}></Link>
+                            <Link key={key} to="/encounter" data-coord={element.coord}
+
+                                onMouseEnter={(e) => {
+                                    let arg=`${current}-${e.target.getAttribute('data-coord')}`
+                                    buildMap(arg)
+                                }}
+
+                                onMouseLeave={() => {
+                                    buildMap(null)
+                                }}
+
+                                className={`${element.class} ${element.interactionClass}`}
+
+                            >
+                            </Link>
                         </>
                     )
                 }
                 else{
                     return(
                         <>
-                            <div key={key} className={elementClass}></div>
+                            <div key={key} className={element.interactionClass ? `${element.class} ${element.interactionClass}` : element.class}></div>
                         </>
                     )
                 }
 
                 
             })}
-
-            {/* <div className="map__dot map__dot_civilian map__dot_1 map__dot_current"></div>
-
-            <div className="map__line map__line_up map__line_1-2a"></div>
-            <div className="map__line map__line_down map__line_1-2b"></div>
-
-            <div className="map__dot map__dot_civilian map__dot_2a"></div>
-            <div className="map__dot map__dot_civilian map__dot_2b"></div>
-
-            <div className="map__line map__line_up map__line_2a-3a"></div>
-            <div className="map__line map__line_down map__line_2a-3b"></div>
-            <div className="map__line map__line_up map__line_2b-3b"></div>
-            <div className="map__line map__line_down map__line_2b-3c"></div>
-
-            <div className="map__dot map__dot_nebula map__dot_3a"></div>
-            <div className="map__dot map__dot_hostile map__dot_3b"></div>
-            <div className="map__dot map__dot_hostile map__dot_3c"></div>
-
-            <div className="map__line map__line_down map__line_3a-4a"></div>
-            <div className="map__line map__line_up map__line_3b-4a"></div>
-            <div className="map__line map__line_down map__line_3b-4b"></div>
-            <div className="map__line map__line_up map__line_3c-4b"></div>
-
-            <div className="map__dot map__dot_hostile map__dot_4a"></div>
-            <div className="map__dot map__dot_civilian map__dot_4b"></div>
-
-            <div className="map__line map__line_across map__line_4a-5a"></div>
-            <div className="map__line map__line_across map__line_4b-5b"></div>
-
-            <div className="map__dot map__dot_civilian map__dot_5a"></div>
-            <div className="map__dot map__dot_nebula map__dot_5b"></div>
-
-            <div className="map__line map__line_down map__line_5a-6"></div>
-            <div className="map__line map__line_up map__line_5b-6"></div>
-
-            <div className="map__dot map__dot_hostile map__dot_6"></div> */}
 
         </section>
     )

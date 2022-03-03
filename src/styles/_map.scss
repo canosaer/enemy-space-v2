@@ -102,6 +102,11 @@
         &_across{
             align-self: center;
         }
+
+        &_active{
+            background: yellow;
+            height: 2px;
+        }
     }
 
     
