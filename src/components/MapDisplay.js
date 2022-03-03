@@ -1,15 +1,18 @@
-import {dots, lines} from '../store/data'
+import React, {useContext} from 'react'
+import dots from '../store/dots'
+import lines from '../store/lines'
 // import ShortUniqueId from 'short-unique-id'
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
+import {Context} from '../store/store'
 
 export default function MapDisplay() {
 
     const [sectorMap, setSectorMap] = useState([])
     const [current, setCurrent] = useState(1)
+    const [state, dispatch] = useContext(Context)
 
     const buildMap = (path) => {
-        console.log(path)
         let tempMap = []
         for(let i=1;i<7;i++){
             dots.forEach(dot => {
@@ -55,6 +58,10 @@ export default function MapDisplay() {
 
                                 onMouseLeave={() => {
                                     buildMap(null)
+                                }}
+
+                                onClick={(e) => {
+                                    dispatch({type:'UPDATE_CURRENT', payload: e.target.getAttribute('data-coord')})
                                 }}
 
                                 className={`${element.class} ${element.interactionClass}`}

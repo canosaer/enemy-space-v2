@@ -1,13 +1,20 @@
-import monster from '../img/monster.png'
+import React, {useContext} from 'react';
+import {Context} from '../store/store'
 import { Link } from 'react-router-dom'
+import { useState } from 'react';
+import {scenes, dots} from '../store/data'
 
 export default function EncounterScene() {
+    const [resolution, setResolution] = useState(null)
+    const [state, dispatch] = useContext(Context)
+
+    console.log(state.current)
     
     return(
         <section className="scene">
-            <h2 className="scene__heading">Starspawn Attack!</h2>
+            {/* <h2 className="scene__heading">Starspawn Attack!</h2>
             <figure className="scene__image-slot">
-                <img className="scene__image" src={monster} alt="space monster" />
+                <img className="scene__image" src={scenes[0].image} alt="space monster" />
             </figure>      
             <div className="scene__text">
                 <p className="scene__event">A massive starspawn bears down on your ship, trying to swallow it whole!</p>
@@ -31,7 +38,7 @@ export default function EncounterScene() {
                     </div>
                 </section>
                 <Link to="/map" className="scene__continue">Continue</Link>
-            </div>
+            </div> */}
             
         </section>
     )
