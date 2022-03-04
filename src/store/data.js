@@ -1,5 +1,5 @@
 const data = {
-    current: 1,
+    current: null,
     onEncounter: false,
 }
 

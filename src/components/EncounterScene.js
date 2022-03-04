@@ -8,7 +8,11 @@ export default function EncounterScene() {
     const [resolution, setResolution] = useState(null)
     const [state, dispatch] = useContext(Context)
 
-    console.log(state.current)
+
+    if(state.current.class.includes("civilian")){
+        
+    }
+
     
     return(
         <section className="scene">

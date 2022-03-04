@@ -61,7 +61,11 @@ export default function MapDisplay() {
                                 }}
 
                                 onClick={(e) => {
-                                    dispatch({type:'UPDATE_CURRENT', payload: e.target.getAttribute('data-coord')})
+                                    let target = {
+                                        coord: e.target.getAttribute('data-coord'),
+                                        class: e.target.className,
+                                    }
+                                    dispatch({type:'UPDATE_CURRENT', payload: target})
                                 }}
 
                                 className={`${element.class} ${element.interactionClass}`}
