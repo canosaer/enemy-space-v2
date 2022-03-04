@@ -9,7 +9,6 @@ import {Context} from '../store/store'
 export default function MapDisplay() {
 
     const [sectorMap, setSectorMap] = useState([])
-    const [current, setCurrent] = useState(1)
     const [state, dispatch] = useContext(Context)
 
     const buildMap = (path) => {
@@ -52,7 +51,7 @@ export default function MapDisplay() {
                             <Link key={key} to="/encounter" data-coord={element.coord}
 
                                 onMouseEnter={(e) => {
-                                    let arg=`${current}-${e.target.getAttribute('data-coord')}`
+                                    let arg=`${state.current.coord}-${e.target.getAttribute('data-coord')}`
                                     buildMap(arg)
                                 }}
 
