@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../store/store'
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
 import civilianEncounters from '../store/civilianEncounters'
 import {getRandomInteger} from '../utilities'
 
@@ -10,13 +9,16 @@ export default function EncounterScene() {
     const [state, dispatch] = useContext(Context)
     const [encounter, setEncounter] = useState(null)
 
+    useEffect(() => {
+        let encounters = null
+        if(state.current.class.includes("civilian")) encounters = civilianEncounters
+        const availableEncounters = encounters.filter(encounter => encounter.available)
+        const random = getRandomInteger(0,availableEncounters.length-1)
+        setEncounter(availableEncounters[random])
+    }, [encounter]);
 
-    if(state.current.class.includes("civilian") && !resolution){
-        const random = getRandomInteger(0,civilianEncounters.length)
-        if(!resolution){
-            setEncounter(civilianEncounters)
-        }
-    }
+    
+
 
     
     return(

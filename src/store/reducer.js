@@ -8,7 +8,7 @@ const reducer = (state, action) => {
         case 'TOGGLE_ENCOUNTER':
             return{
                 ...state,
-                onEncounter: action.payload
+                encounter: action.payload
             }
         default: 
             return state

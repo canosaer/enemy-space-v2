@@ -1,9 +1,8 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import dots from '../store/dots'
 import lines from '../store/lines'
 // import ShortUniqueId from 'short-unique-id'
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
 import {Context} from '../store/store'
 
 export default function MapDisplay() {
