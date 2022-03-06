@@ -1,14 +1,15 @@
 import playerShip from '../img/player.png'
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useCallback, useState} from 'react';
 import {Context} from '../store/store'
 
 export default function Player() {
     const [state, dispatch] = useContext(Context)
-
-    let weapons = "Operational"
-    let lifeSupport = "Operational"
-    let power = "Operational"
-    let engines = "Operational"
+    // const [stats, setStats] = useState({
+    //     weapons: "Operational",
+    //     lifeSupport: "Operational",
+    //     power: "Operational",
+    //     engines: "Operational"
+    // })
 
     const translateStatus = (value) => {
         if(value === 6) return "Superior"
@@ -19,12 +20,20 @@ export default function Player() {
         else if(value === 1) return "Critical"
     }
 
-    useEffect(() => {
-        weapons = translateStatus(state.weapons)
-        lifeSupport = translateStatus(state.lifeSupport)
-        power = translateStatus(state.power)
-        engines = translateStatus(state.engines)
-    }, []);
+    // useEffect(() => {
+    //     setStats({
+    //         weapons: translateStatus(state.weapons),
+    //         lifeSupport: translateStatus(state.lifeSupport),
+    //         power: translateStatus(state.power),
+    //         engines: translateStatus(state.engines),
+    //     })
+    // }, [state, translateStatus]);
+
+    const weapons = translateStatus(state.weapons)
+    const engines = translateStatus(state.engines)
+    const lifeSupport = translateStatus(state.lifeSupport)
+    const power = translateStatus(state.power)
+    console.log(state)
     
     return(
         <section className="player">

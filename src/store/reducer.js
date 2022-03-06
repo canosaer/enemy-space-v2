@@ -16,25 +16,25 @@ const reducer = (state, action) => {
                 resolution: action.payload
             }
         case 'UPDATE_WEAPONS':
-            console.log('yo')
+            console.log(action.payload)
             return{
                 ...state,
                 weapons: action.payload
             }
         case 'UPDATE_LIFESUPPORT':
-            console.log('yo')
+            console.log(action.payload)
             return{
                 ...state,
                 lifeSupport: action.payload
             }
         case 'UPDATE_POWER':
-            console.log('yo')
+            console.log(action.payload)
             return{
                 ...state,
                 power: action.payload
             }
         case 'UPDATE_ENGINES':
-            console.log('yo')
+            console.log(action.payload)
             return{
                 ...state,
                 engines: action.payload
