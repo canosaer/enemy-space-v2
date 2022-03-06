@@ -5,7 +5,7 @@ const reducer = (state, action) => {
                 ...state,
                 current: action.payload
             }
-        case 'TOGGLE_ENCOUNTER':
+        case 'UPDATE_ENCOUNTER':
             return{
                 ...state,
                 encounter: action.payload
