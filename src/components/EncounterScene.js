@@ -1,22 +1,37 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../store/store'
 import civilianEncounters from '../store/civilianEncounters'
+import nebulaEncounters from '../store/nebulaEncounters'
+import hostileEncounters from '../store/hostileEncounters'
 import {getRandomInteger, resolveAttack, rollStat} from '../utilities'
 import Resolution from '../components/Resolution'
 
 export default function EncounterScene() {
-    const [resolution, setResolution] = useState(null)
+    // const [resolution, setResolution] = useState(null)
     const [encounter, setEncounter] = useState(null)
     const [state, dispatch] = useContext(Context)
 
     useEffect(() => {
         let encounters = null
         if(state.current.class.includes("civilian")) encounters = civilianEncounters
-        const availableEncounters = encounters.filter(encounter => encounter.available)
+        else if(state.current.class.includes("nebula")) encounters = nebulaEncounters
+        else encounters = hostileEncounters
+        const availableEncounters = encounters.filter(availableEncounter => availableEncounter.available)
         const random = getRandomInteger(0,availableEncounters.length-1)
         setEncounter(availableEncounters[random])
         dispatch({type:'UPDATE_ENCOUNTER', payload: encounter})
-
+        if(encounter){
+            console.log(civilianEncounters)
+            civilianEncounters.map((civilianEncounter, i) => {
+                if(civilianEncounter.id === encounter.id) civilianEncounter.available = false
+            })
+            nebulaEncounters.map((nebulaEncounter, i) => {
+                if(nebulaEncounter.id === encounter.id) nebulaEncounter.available = false
+            })
+            hostileEncounters.map((hostileEncounter, i) => {
+                if(hostileEncounter.id === encounter.id) hostileEncounter.available = false
+            })
+        }
     }, [encounter]);
 
     const resolveEncounter = (choice) => {

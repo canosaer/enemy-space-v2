@@ -55,7 +55,6 @@ export default function MapDisplay() {
             if(dot.interactionClass === "map__dot_available"){
                 if(parseInt(dot.coord[0]) <= parseInt(newCurrent[0])) dot.interactionClass = "map__dot_unavailable"
                 else{
-                    console.log(dot)
                     newActiveDots.forEach(newActive => {
                         if(dot.coord === newActive) dot.interactionClass = "map__dot_active"
                     });

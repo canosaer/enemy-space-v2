@@ -1,7 +1,7 @@
 import monster from '../img/monster.png'
     
-let civilianEncounters = [
-    {   id: 'c00',
+let hostileEncounters = [
+    {   id: 'h00',
         available: true,
         heading: "Starspawn Attack!",
         image: monster,
@@ -19,4 +19,4 @@ let civilianEncounters = [
     }
 ]
 
-export default civilianEncounters
+export default hostileEncounters
