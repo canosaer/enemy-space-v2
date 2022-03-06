@@ -1,7 +1,7 @@
 import monster from '../img/monster.png'
     
 const civilianEncounters = [
-    {   id: '01',
+    {   id: 'c00',
         available: true,
         heading: "Starspawn Attack!",
         image: monster,

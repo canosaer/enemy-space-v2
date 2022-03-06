@@ -20,11 +20,33 @@ export default function EncounterScene() {
     }, [encounter]);
 
     const resolveEncounter = (choice) => {
-        if(encounter.id === "01"){
+        let resolution = ""
+        if(encounter.id === "c00"){
             if(choice==="Fire Your Weapons"){
-                resolveAttack("weapons",state.weapons,4)
+                const damage = resolveAttack(state.weapons,4)
+                if(damage === 0){
+                    resolution = civilianEncounters[0].resolutions[0].pass
+                }
+                else{
+                    const rnd = getRandomInteger(0,1)
+                    let type = ""
+                    let newValue = null
+                    if(rnd = 0){
+                        type = "weapons"
+                        newValue = state.weapons - damage
+                        dispatch({type:'UPDATE_WEAPONS', payload: newValue})
+                    }
+                    else{
+                        type = "engines"
+                        newValue = state.engines - damage
+                        dispatch({type:'UPDATE_ENGINES', payload: newValue})
+                    }
+                    resolution = civilianEncounters[0].resolutions[0].fail + ` You take damage to your ${type}!`
+                }
+                
             }
         }
+        dispatch({type:'UPDATE_RESOLUTION', payload: resolution})
     }
 
     // <p className="resolution__text">You unleash a volley of missiles directly into the starspawn's gaping maw. It reels in pain and slinks away, allowing you to continue on your way.</p>
