@@ -1,23 +1,13 @@
 import monster from '../img/monster.png'
-
+    
 const civilianEncounters = [
-    {   available: true,
+    {   id: '01',
+        available: true,
         heading: "Starspawn Attack!",
         image: monster,
         event: "A massive starspawn bears down on your ship, trying to swallow it whole!",
         choices: "You can try to fend it off by firing your weapons, or you can take evasive maneuvers and try to outrun it...",
-        buttons: [
-            {   text: "Fire Your Weapons",
-                click: function(){
-                    console.log(0)
-                },
-            },
-            {   text: "Take Evasive Manuevers",
-                click: function(){
-                    console.log(1)
-                }
-            },
-        ],
+        buttons: [ "Fire Your Weapons", "Take Evasive Manuevers" ],
         resolutions:[
             {   pass: "You unleash a volley of missiles directly into the starspawn's gaping maw. It reels in pain and slinks away, allowing you to continue on your way.",
                 fail: "You unleash a volley of missiles that detonate across the starspawn's thick hide and it pulls back in pain. Deciding your ship is not food, it rams you spitfeully as it retreats.",

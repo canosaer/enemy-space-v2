@@ -10,6 +10,31 @@ const reducer = (state, action) => {
                 ...state,
                 encounter: action.payload
             }
+        case 'UPDATE_RESOLUTION':
+            return{
+                ...state,
+                resolution: action.payload
+            }
+        case 'UPDATE_WEAPONS':
+            return{
+                ...state,
+                weapons: action.payload
+            }
+        case 'UPDATE_LIFESUPPORT':
+            return{
+                ...state,
+                lifeSupport: action.payload
+            }
+        case 'UPDATE_POWER':
+            return{
+                ...state,
+                power: action.payload
+            }
+        case 'UPDATE_ENGINES':
+            return{
+                ...state,
+                engines: action.payload
+            }
         default: 
             return state
     }
