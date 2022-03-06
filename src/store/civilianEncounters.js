@@ -13,7 +13,7 @@ const civilianEncounters = [
                 fail: "You unleash a volley of missiles that detonate across the starspawn's thick hide and it pulls back in pain. Deciding your ship is not food, it rams you spitfeully as it retreats.",
             },
             {   pass: "Your ship swerves to narrowly avoid the attack and you punch the afterburner. You are surprised by the speed of your ship as the starspawn quickly fades into the distance behind you. Your engines improve!",
-                fail: "Your ship swerves to avoid the attack. You narrowly miss the jaws of the starspawn, but it gives your ship a jarring sideswipe as it passes by. You manage to punch the afterburner and get away before it can charge you again.",
+                fail: "Your ship swerves to avoid the attack. You narrowly miss the jaws of the starspawn, but it gives your ship a jarring sideswipe as it passes by. You punch the afterburner and get away before it can charge you again.",
             },
         ], 
     }

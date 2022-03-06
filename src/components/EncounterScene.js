@@ -49,25 +49,26 @@ export default function EncounterScene() {
             else{
                 let roll = rollStat(state.engines)
                 if(roll > 3){
-                    let newValue = state.engines++
+                    const newValue = state.engines + 1
                     dispatch({type:'UPDATE_ENGINES', payload: newValue})
-                    resolution = civilianEncounters[0].resolutions[0].pass
+                    resolution = civilianEncounters[0].resolutions[1].pass
+                }
+                else if(roll>0 && roll<4){
+                    const newValue = state.weapons - 1
+                    dispatch({type:'UPDATE_WEAPONS', payload: newValue})
+                    resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your weapons!'
+                }
+                else{
+                    const newWeaponsValue = state.weapons - 1
+                    const newEnginesValue = state.engines - 1
+                    dispatch({type:'UPDATE_WEAPONS', payload: newWeaponsValue})
+                    dispatch({type:'UPDATE_ENGINES', payload: newEnginesValue})
+                    resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your weapons and engines!'
                 }
             }
         }
         dispatch({type:'UPDATE_RESOLUTION', payload: resolution})
     }
-
-    // <p className="resolution__text">You unleash a volley of missiles directly into the starspawn's gaping maw. It reels in pain and slinks away, allowing you to continue on your way.</p>
-//     <div className="resolution__a resolution__a_failure hidden">
-//     <p className="resolution__text">You unleash a volley of missiles that detonate across the starspawn's thick hide and it pulls back in pain. Deciding your ship is not food, it rams you spitfeully as it retreats.</p>                        
-// </div>
-// <div className="resolution__b resolution__b_success hidden">
-//     <p className="resolution__text">Your ship swerves to narrowly avoid the attack and you punch the afterburner. The starspawn gives chase, but eventually recedes into the distance behind you.</p>                        
-// </div>
-// <div className="resolution__b resolution__b_failure hidden">
-//     <p className="resolution__text">Your ship swerves to avoid the attack. You narrowly miss the jaws of the starspawn, but it gives your ship a jarring sideswipe as it passes by. You manage to punch the afterburner and get away before it can charge you again.</p>                        
-// </div>
 
     if(encounter){
         return(

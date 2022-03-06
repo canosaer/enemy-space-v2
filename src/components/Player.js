@@ -4,15 +4,9 @@ import {Context} from '../store/store'
 
 export default function Player() {
     const [state, dispatch] = useContext(Context)
-    // const [stats, setStats] = useState({
-    //     weapons: "Operational",
-    //     lifeSupport: "Operational",
-    //     power: "Operational",
-    //     engines: "Operational"
-    // })
 
     const translateStatus = (value) => {
-        if(value === 6) return "Superior"
+        if(value > 5) return "Superior"
         else if(value === 5) return "Improved"
         else if(value === 4) return "Operational"
         else if(value === 3) return "Damaged"
@@ -20,20 +14,10 @@ export default function Player() {
         else if(value === 1) return "Critical"
     }
 
-    // useEffect(() => {
-    //     setStats({
-    //         weapons: translateStatus(state.weapons),
-    //         lifeSupport: translateStatus(state.lifeSupport),
-    //         power: translateStatus(state.power),
-    //         engines: translateStatus(state.engines),
-    //     })
-    // }, [state, translateStatus]);
-
     const weapons = translateStatus(state.weapons)
     const engines = translateStatus(state.engines)
     const lifeSupport = translateStatus(state.lifeSupport)
     const power = translateStatus(state.power)
-    console.log(state)
     
     return(
         <section className="player">
