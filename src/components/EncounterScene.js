@@ -3,7 +3,6 @@ import {Context} from '../store/store'
 import civilianEncounters from '../store/civilianEncounters'
 import {getRandomInteger, resolveAttack, rollStat} from '../utilities'
 import Resolution from '../components/Resolution'
-import Player from './Player'
 
 export default function EncounterScene() {
     const [resolution, setResolution] = useState(null)

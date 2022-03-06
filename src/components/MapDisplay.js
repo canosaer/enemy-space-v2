@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect, useCallback} from 'react'
 import dots from '../store/dots'
 import lines from '../store/lines'
 // import ShortUniqueId from 'short-unique-id'
@@ -10,7 +10,14 @@ export default function MapDisplay() {
     const [sectorMap, setSectorMap] = useState([])
     const [state, dispatch] = useContext(Context)
 
-    const buildMap = (path) => {
+    useEffect(() => {
+        if(!sectorMap[0]){
+            buildMap(null)
+        }
+        
+    }, [sectorMap]);
+
+    const buildMap = useCallback((path) => {
         let tempMap = []
         for(let i=1;i<7;i++){
             dots.forEach(dot => {
@@ -32,10 +39,31 @@ export default function MapDisplay() {
             });
         }
         setSectorMap(tempMap)
-    }
+    })
 
-    if(!sectorMap[0]){
-        buildMap(null)
+    const updateDots = (newCurrent) => {
+        let newActiveDots = []
+        dots.map((dot, i) => {
+            if(dot.interactionClass === "map__dot_current") dot.interactionClass = "map__dot_unavailable"
+            else if(dot.interactionClass === "map__dot_active"){
+                if(dot.coord === newCurrent){
+                    dot.interactionClass = "map__dot_current"
+                    newActiveDots = dot.connections
+                }
+                else dot.interactionClass = "map__dot_unavailable"
+            }
+            if(dot.interactionClass === "map__dot_available"){
+                if(parseInt(dot.coord[0]) <= parseInt(newCurrent[0])) dot.interactionClass = "map__dot_unavailable"
+                else{
+                    console.log(dot)
+                    newActiveDots.forEach(newActive => {
+                        if(dot.coord === newActive) dot.interactionClass = "map__dot_active"
+                    });
+                }
+            }
+            // if(dot.interactionClass === "map__dot_available" && dot.coord[0] === newCurrent[0]) dot.interactionClass = "map__dot_unavailable"
+        })
+
     }
 
     return (
@@ -64,6 +92,7 @@ export default function MapDisplay() {
                                         class: e.target.className,
                                     }
                                     dispatch({type:'UPDATE_CURRENT', payload: target})
+                                    updateDots(target.coord)
                                 }}
 
                                 className={`${element.class} ${element.interactionClass}`}
