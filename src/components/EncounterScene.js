@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../store/store'
 import civilianEncounters from '../store/civilianEncounters'
-import {getRandomInteger} from '../utilities'
+import {getRandomInteger, resolveAttack} from '../utilities'
 import Resolution from '../components/Resolution'
 
 export default function EncounterScene() {
@@ -21,7 +21,9 @@ export default function EncounterScene() {
 
     const resolveEncounter = (choice) => {
         if(encounter.id === "01"){
-            console.log('yo')
+            if(choice==="Fire Your Weapons"){
+                resolveAttack("weapons",state.weapons,4)
+            }
         }
     }
 
