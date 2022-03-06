@@ -3,9 +3,9 @@ const getRandomInteger = (min, max) => {
 }
 
 const resolveAttack = (playerStrength, enemyStrength) => {
-    let enemyRoll = 0;
-    let playerRoll = 0;
-    let damage = 0;
+    let enemyRoll = 0
+    let playerRoll = 0
+    let damage = 0
 
     for(let i=0;i<playerStrength;i++){
         playerRoll += getRandomInteger(0,2)
@@ -21,7 +21,18 @@ const resolveAttack = (playerStrength, enemyStrength) => {
     
 }
 
+const rollStat = (stat) => {
+    let playerRoll = 0
+
+    for(let i=0;i<stat;i++){
+        playerRoll += getRandomInteger(0,2)
+    }
+
+    return playerRoll
+}
+
 export {
     getRandomInteger,
     resolveAttack,
+    rollStat,
 }

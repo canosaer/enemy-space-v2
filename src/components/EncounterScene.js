@@ -1,8 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Context} from '../store/store'
 import civilianEncounters from '../store/civilianEncounters'
-import {getRandomInteger, resolveAttack} from '../utilities'
+import {getRandomInteger, resolveAttack, rollStat} from '../utilities'
 import Resolution from '../components/Resolution'
+import Player from './Player'
 
 export default function EncounterScene() {
     const [resolution, setResolution] = useState(null)
@@ -28,7 +29,7 @@ export default function EncounterScene() {
                     resolution = civilianEncounters[0].resolutions[0].pass
                 }
                 else{
-                    const rnd = getRandomInteger(0,1)
+                    let rnd = getRandomInteger(0,1)
                     let type = ""
                     let newValue = null
                     if(rnd = 0){
@@ -44,6 +45,14 @@ export default function EncounterScene() {
                     resolution = civilianEncounters[0].resolutions[0].fail + ` You take damage to your ${type}!`
                 }
                 
+            }
+            else{
+                let roll = rollStat(state.engines)
+                if(roll > 3){
+                    let newValue = state.engines++
+                    dispatch({type:'UPDATE_ENGINES', payload: newValue})
+                    resolution = civilianEncounters[0].resolutions[0].pass
+                }
             }
         }
         dispatch({type:'UPDATE_RESOLUTION', payload: resolution})
