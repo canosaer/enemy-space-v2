@@ -1,4 +1,6 @@
 import monster from '../img/monster.png'
+
+// 3 hostile encounters
     
 let hostileEncounters = [
     {   id: 'h00',

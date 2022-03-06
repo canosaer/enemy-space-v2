@@ -1,5 +1,5 @@
 import monster from '../img/monster.png'
-    
+
 let nebulaEncounters = [
     {   id: 'n00',
         available: true,

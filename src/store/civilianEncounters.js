@@ -1,4 +1,6 @@
 import monster from '../img/monster.png'
+
+// 2 civilian encounters
     
 let civilianEncounters = [
     {   id: 'c00',

@@ -21,7 +21,6 @@ export default function EncounterScene() {
         setEncounter(availableEncounters[random])
         dispatch({type:'UPDATE_ENCOUNTER', payload: encounter})
         if(encounter){
-            console.log(civilianEncounters)
             civilianEncounters.map((civilianEncounter, i) => {
                 if(civilianEncounter.id === encounter.id) civilianEncounter.available = false
             })
@@ -36,7 +35,7 @@ export default function EncounterScene() {
 
     const resolveEncounter = (choice) => {
         let resolution = ""
-        if(encounter.id === "c00"){
+        if(encounter.id === "n00"){
             if(choice==="Fire Your Weapons"){
                 const damage = resolveAttack(state.weapons,4)
                 if(damage === 0){
