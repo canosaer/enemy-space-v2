@@ -99,7 +99,6 @@ export default function EncounterScene() {
                     </div>
                     <Resolution />
                 </div>
-                
             </section>
         )
     }
