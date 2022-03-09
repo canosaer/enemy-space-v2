@@ -96,7 +96,7 @@ export default function EncounterScene() {
         let resolution = ""
         if(encounter.id === "c00"){
             if(choice==="Investigate"){
-                const roll = getRandomInteger(0,2) + getRandomInteger(0,2)
+                const roll = rollDice(2)
                 if(roll===4){
                     resolution = improveLifeSupport(1, civilianEncounters[0].resolutions[0])
                 }
@@ -104,11 +104,11 @@ export default function EncounterScene() {
                     resolution = improvePower(1, civilianEncounters[0].resolutions[0])
                 }
                 else if(roll===0){
-                    const damage = getRandomInteger(0,2) + getRandomInteger(0,2)
+                    const damage = rollDice(2)
                     resolution = damagePhysicalComponents(damage, civilianEncounters[0].resolutions[0])
                 }
                 else{
-                    const damage = getRandomInteger(0,2)
+                    const damage = rollDice(1)
                     resolution = damageSystems(damage, civilianEncounters[0].resolutions[0])
                 }
             }
@@ -119,13 +119,13 @@ export default function EncounterScene() {
                     resolution = civilianEncounters[0].resolutions[1].pass
                 }
                 else if(roll>1 && roll <4){
-                    const damage = getRandomInteger(0,2)
+                    const damage = rollDice(1)
                     resolution = damageSystems(damage, civilianEncounters[0].resolutions[1])
                 }
                 else{
                     resolution = civilianEncounters[0].resolutions[1].fail
-                    const physicalDamage = getRandomInteger(0,2)
-                    const systemsDamage = getRandomInteger(0,2)
+                    const physicalDamage = rollDice(1)
+                    const systemsDamage = rollDice(1)
                     if(physicalDamage > 0 && systemsDamage > 0){
                         damagePhysicalComponents(physicalDamage, null)
                         damageSystems(systemsDamage, null)
@@ -146,21 +146,10 @@ export default function EncounterScene() {
             if(choice==="Fire Your Weapons"){
                 const damage = resolveAttack(state.weapons,4)
                 if(damage === 0){
-                    resolution = civilianEncounters[0].resolutions[0].pass
+                    resolution = civilianEncounters[1].resolutions[0].pass
                 }
                 else{
-                    let rnd = getRandomInteger(0,1)
-                    let type = ""
-                    let newValue = null
-                    if(rnd === 0){
-                        modifyStat("weapons", -damage)
-                        dispatch({type:'UPDATE_WEAPONS', payload: newValue})
-                    }
-                    else{
-                        modifyStat("engines", -damage)
-                        dispatch({type:'UPDATE_ENGINES', payload: newValue})
-                    }
-                    resolution = civilianEncounters[0].resolutions[0].fail + ` You take damage to your ${type}!`
+                    resolution = damagePhysicalComponents(damage, civilianEncounters[1].resolutions[0])
                 }
                 
             }
@@ -210,18 +199,7 @@ export default function EncounterScene() {
                         resolution = nebulaEncounters[0].resolutions[1].fail + 'Your systems glitch for a minute, but you are able to repair them and continue on your way.'
                     }
                     else{
-                        let rnd = getRandomInteger(0,1)
-                        let type = ""
-                        let newValue = null
-                        if(rnd === 0){
-                            type = "weapons"
-                            modifyStat("weapons", -damage)
-                        }
-                        else{
-                            type = "engines"
-                            modifyStat("engines", -damage)
-                        }
-                        resolution = nebulaEncounters[0].resolutions[1].fail + ` You take damage to your ${type}!`
+                        damagePhysicalComponents(damage, nebulaEncounters[0].resolutions[1])
                     }
                 }
             }
@@ -248,7 +226,12 @@ export default function EncounterScene() {
                     resolution = hostileEncounters[0].resolutions[1].pass
                 }
                 else if(roll > 0 && roll < 4){
-
+                    damage = rollDice(1)
+                    resolution = damageSystems(damage, hostileEncounters[0].resolutions[1].fail)
+                }
+                else{
+                    damage = rollDice(2)
+                    resolution = damageSystems(damage, hostileEncounters[0].resolutions[1].fail)
                 }
             }
         }

@@ -2,6 +2,14 @@ const getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+const rollDice = (num) => {
+    let sum = 0;
+    for(let i=0;i<num;i++){
+        sum = sum + getRandomInteger(0,2)
+    }
+    return sum
+}
+
 const resolveAttack = (playerStrength, enemyStrength) => {
     let enemyRoll = 0
     let playerRoll = 0
