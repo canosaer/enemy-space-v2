@@ -43,4 +43,5 @@ export {
     getRandomInteger,
     resolveAttack,
     rollStat,
+    rollDice,
 }

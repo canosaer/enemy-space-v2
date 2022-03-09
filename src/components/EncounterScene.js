@@ -3,7 +3,7 @@ import {Context} from '../store/store'
 import civilianEncounters from '../store/civilianEncounters'
 import nebulaEncounters from '../store/nebulaEncounters'
 import hostileEncounters from '../store/hostileEncounters'
-import {getRandomInteger, resolveAttack, rollStat} from '../utilities'
+import {getRandomInteger, resolveAttack, rollStat, rollDice} from '../utilities'
 import Resolution from '../components/Resolution'
 
 export default function EncounterScene() {
@@ -226,11 +226,11 @@ export default function EncounterScene() {
                     resolution = hostileEncounters[0].resolutions[1].pass
                 }
                 else if(roll > 0 && roll < 4){
-                    damage = rollDice(1)
+                    const damage = rollDice(1)
                     resolution = damageSystems(damage, hostileEncounters[0].resolutions[1].fail)
                 }
                 else{
-                    damage = rollDice(2)
+                    const damage = rollDice(2)
                     resolution = damageSystems(damage, hostileEncounters[0].resolutions[1].fail)
                 }
             }
