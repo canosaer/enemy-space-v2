@@ -94,6 +94,7 @@
         padding-bottom: 40%;
         justify-self: center;
         margin: 1.5rem 0;
+        overflow: hidden;
     }
     
     &__image{
@@ -167,6 +168,12 @@
             background: rgb(255, 226, 61);
         }
     }
+}
+
+#c00{
+    transform: rotate(180deg);
+    width: 140%;
+    object-position: 50% 25%;
 }
 
 .resolution{

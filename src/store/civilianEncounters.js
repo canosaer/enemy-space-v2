@@ -1,4 +1,4 @@
-import monster from '../img/monster.png'
+import debris from '../img/debris.png'
 
 // 2 civilian encounters
     
@@ -6,10 +6,10 @@ let civilianEncounters = [
     {   id: 'c00',
         available: true,
         heading: "Distress Beacon",
-        image: monster,
-        event: "As you fly near the sprawling debris of a past space battle, your sensors pick up a distress beacon coming from somewhere inside the field of twisted wreckage.",
-        choices: "You can fly into the debris field to investigate, or you can fly cautiously around not taking the risk...",
-        buttons: [ "Investigate", "Fly Around" ],
+        image: debris,
+        event: "As you fly near the debris of a past space battle, your sensors pick up a distress beacon coming from somewhere inside the field of wreckage.",
+        choices: "You can fly into the debris field to investigate, or you can fly cautiously around it...",
+        buttons: [ "Investigate", "Fly Around It" ],
         resolutions:[
             {   pass: "You venture into the debris field and find a salvage vessel with disabled engines. You help them with repairs and they gratefully offer to upgrade your ship.",
                 fail: "It's harder than you thought to navigate the debris field and space junk cascades against the hull of your ship. Once you reach the distress beacon, you find a wrecked salvage vessel with no life signs aboard.",

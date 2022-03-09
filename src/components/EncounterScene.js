@@ -95,31 +95,37 @@ export default function EncounterScene() {
                 }
                 else if(roll===0){
                     const damage = getRandomInteger(0,2) + getRandomInteger(0,2)
-                    const rnd = getRandomInteger(0,1)
-                    if(rnd === 1){
-                        const newValue = state.weapons - damage
-                        dispatch({type:'UPDATE_WEAPONS', payload: newValue})
-                        resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your weapons!'
+                    if(damage > 0){
+                        const rnd = getRandomInteger(0,1)
+                        if(rnd === 1){
+                            const newValue = state.weapons - damage
+                            dispatch({type:'UPDATE_WEAPONS', payload: newValue})
+                            resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your weapons!'
+                        }
+                        else{
+                            const newValue = state.engines - damage
+                            dispatch({type:'UPDATE_ENGINES', payload: newValue})
+                            resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your engines!'
+                        }
                     }
-                    else{
-                        const newValue = state.engines - damage
-                        dispatch({type:'UPDATE_ENGINES', payload: newValue})
-                        resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your engines!'
-                    }
+                    else resolution = civilianEncounters[0].resolutions[0].fail
                 }
                 else{
                     const damage = getRandomInteger(0,2)
-                    const rnd = getRandomInteger(0,1)
-                    if(rnd === 1){
-                        const newValue = state.lifeSupport - damage
-                        dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
-                        resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your life support system!'
+                    if(damage > 0){
+                        const rnd = getRandomInteger(0,1)
+                        if(rnd === 1){
+                            const newValue = state.lifeSupport - damage
+                            dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
+                            resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your life support system!'
+                        }
+                        else{
+                            const newValue = state.power - damage
+                            dispatch({type:'UPDATE_POWER', payload: newValue})
+                            resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your power system!'
+                        }
                     }
-                    else{
-                        const newValue = state.power - damage
-                        dispatch({type:'UPDATE_POWER', payload: newValue})
-                        resolution = civilianEncounters[0].resolutions[0].fail + 'You take damage to your power system!'
-                    }
+                    else resolution = civilianEncounters[0].resolutions[0].fail
                 }
             }
             else{
@@ -131,20 +137,53 @@ export default function EncounterScene() {
                 }
                 else if(roll>1 && roll <4){
                     const damage = getRandomInteger(0,2)
-                    const rnd = getRandomInteger(0,1)
-                    if(rnd === 1){
-                        const newValue = state.lifeSupport - damage
-                        dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
-                        resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your life support system!'
+                    if(damage > 0){
+                        const rnd = getRandomInteger(0,1)
+                        if(rnd === 1){
+                            const newValue = state.lifeSupport - damage
+                            dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
+                            resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your life support system!'
+                        }
+                        else{
+                            const newValue = state.power - damage
+                            dispatch({type:'UPDATE_POWER', payload: newValue})
+                            resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your power system!'
+                        }
                     }
-                    else{
-                        const newValue = state.power - damage
-                        dispatch({type:'UPDATE_POWER', payload: newValue})
-                        resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your power system!'
-                    }
+                    else resolution = civilianEncounters[0].resolutions[1].fail
                 }
                 else{
-                    
+                    resolution = civilianEncounters[0].resolutions[1].fail
+                    const physicalDamage = getRandomInteger(0,2)
+                    const systemsDamage = getRandomInteger(0,2)
+                    if(physicalDamage > 0 || systemsDamage > 0){
+                        if(physicalDamage > 0){
+                            const rnd = getRandomInteger(0,1)
+                            if(rnd === 1){
+                                const newValue = state.weapons - physicalDamage
+                                dispatch({type:'UPDATE_WEAPONS', payload: newValue})
+                                resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your weapons!'
+                            }
+                            else{
+                                const newValue = state.engines - physicalDamage
+                                dispatch({type:'UPDATE_ENGINES', payload: newValue})
+                                resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your engines!'
+                            }
+                        }
+                        if(systemsDamage > 0){
+                            const rnd = getRandomInteger(0,1)
+                            if(rnd === 1){
+                                const newValue = state.lifeSupport - systemsDamage
+                                dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
+                                resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your life support system!'
+                            }
+                            else{
+                                const newValue = state.power - systemsDamage
+                                dispatch({type:'UPDATE_POWER', payload: newValue})
+                                resolution = civilianEncounters[0].resolutions[1].fail + 'You take damage to your power system!'
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -156,7 +195,7 @@ export default function EncounterScene() {
             <section className="scene">
                 <h2 className="scene__heading">{encounter.heading}</h2>
                 <figure className="scene__image-slot">
-                    <img className="scene__image" src={encounter.image} alt="encounter image" />
+                    <img className="scene__image" src={encounter.image} id={encounter.id} alt="encounter image" />
                 </figure>      
                 <div className="scene__text">
                     <p className="scene__event">{encounter.event}</p>
