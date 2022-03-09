@@ -12,10 +12,10 @@ let civilianEncounters = [
         buttons: [ "Investigate", "Fly Around" ],
         resolutions:[
             {   pass: "You venture into the debris field and find a salvage vessel with disabled engines. You help them with repairs and they gratefully offer to upgrade your ship.",
-                fail: "It's trickier than you thought to navigate the debris field and space junk cascades against the hull of your ship. Once you reach the distress beacon, you find a wrecked salvage vessel with no life signs aboard.",
+                fail: "It's harder than you thought to navigate the debris field and space junk cascades against the hull of your ship. Once you reach the distress beacon, you find a wrecked salvage vessel with no life signs aboard.",
             },
             {   pass: "You skirt around the debris field and discover that the beacon was a trap! A hidden raider emerges from the debris and attacks, but it didn't count on your ace combat skills. After you destroy it, you salvage some equipment and improve your life support!",
-                fail: "You skirt around the debris field and discover that the beacon was a trap! A hidden raider emerges from the debris and attacks! You manage to destroy, but not without taking a few hits first.",
+                fail: "You skirt around the debris field and discover that the beacon was a trap! A hidden raider emerges from the debris and attacks! You manage to destroy it, but not without taking a few hits first.",
             },
         ], 
     }
