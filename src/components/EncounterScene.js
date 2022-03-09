@@ -152,7 +152,7 @@ export default function EncounterScene() {
                     let rnd = getRandomInteger(0,1)
                     let type = ""
                     let newValue = null
-                    if(rnd = 0){
+                    if(rnd === 0){
                         type = "weapons"
                         newValue = state.weapons - damage
                         dispatch({type:'UPDATE_WEAPONS', payload: newValue})
@@ -189,10 +189,56 @@ export default function EncounterScene() {
         }
         else if(encounter.id === "n00"){
             if(choice==="Fire Your Afterburners"){
-                const roll = rollStat(state.engines){
-                    
+                const roll = rollStat(state.engines)
+                if(roll>3){
+                    const newValue = state.lifeSupport + 1
+                    dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
+                    resolution = nebulaEncounters[0].resolutions[0].pass
+                }
+                else if(roll>1 && roll<4){
+                    const newValue = state.lifeSupport - 1
+                    dispatch({type:'UPDATE_LIFESUPPORT', payload: newValue})
+                    resolution = nebulaEncounters[0].resolutions[0].fail + 'You take damage to your life support system!'
+                }
+                else{
+                    const newLifeSupportValue = state.lifeSupport - 1
+                    const newWeaponsValue = state.weapons - 1
+                    dispatch({type:'UPDATE_LIFESUPPORT', payload: newLifeSupportValue})
+                    dispatch({type:'UPDATE_WEAPONS', payload: newWeaponsValue})
+                    resolution = nebulaEncounters[0].resolutions[0].fail + 'You take damage to your weapons and your life support system!'
                 }
             }
+            else{
+                const roll = rollStat(state.power)
+                if(roll>3){
+                    const newValue = state.power + 1
+                    dispatch({type:'UPDATE_POWER', payload: newValue})
+                    resolution = nebulaEncounters[0].resolutions[1].pass
+                }
+                else{
+                    const damage = resolveAttack(state.weapons, 4)
+                    if(damage === 0){
+                        resolution = nebulaEncounters[0].resolutions[1].fail + 'Your systems glitch for a minute, but you are able to repair them and continue on your way.'
+                    }
+                    else{
+                        let rnd = getRandomInteger(0,1)
+                        let type = ""
+                        let newValue = null
+                        if(rnd === 0){
+                            type = "weapons"
+                            newValue = state.weapons - damage
+                            dispatch({type:'UPDATE_WEAPONS', payload: newValue})
+                        }
+                        else{
+                            type = "engines"
+                            newValue = state.engines - damage
+                            dispatch({type:'UPDATE_ENGINES', payload: newValue})
+                        }
+                        resolution = nebulaEncounters[0].resolutions[1].fail + ` You take damage to your ${type}!`
+                    }
+                }
+            }
+            
         }
         dispatch({type:'UPDATE_RESOLUTION', payload: resolution})
     }
