@@ -1,5 +1,10 @@
 const reducer = (state, action) => {
     switch(action.type) {
+        case 'MOUNT_STATE':
+            return {
+                ...state,
+                ...action.payload
+            }
         case 'UPDATE_CURRENT':
             return {
                 ...state,
@@ -16,25 +21,21 @@ const reducer = (state, action) => {
                 resolution: action.payload
             }
         case 'UPDATE_WEAPONS':
-            console.log(action.payload)
             return{
                 ...state,
                 weapons: action.payload
             }
         case 'UPDATE_LIFESUPPORT':
-            console.log(action.payload)
             return{
                 ...state,
                 lifeSupport: action.payload
             }
         case 'UPDATE_POWER':
-            console.log(action.payload)
             return{
                 ...state,
                 power: action.payload
             }
         case 'UPDATE_ENGINES':
-            console.log(action.payload)
             return{
                 ...state,
                 engines: action.payload

@@ -7,10 +7,9 @@ import {Context} from '../store/store'
 
 
 export default function Title() {
-
     const [state, dispatch] = useContext(Context)
-
     const destination = state.encounter ? "/encounter" : "/map"
+    console.log(state)
 
     return(
         <main className="title-screen">
