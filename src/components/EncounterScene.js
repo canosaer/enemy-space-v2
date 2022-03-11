@@ -267,6 +267,21 @@ export default function EncounterScene() {
                     resolution = damagePhysicalComponents(damage, hostileEncounters[1].resolutions[0])
                 }
             }
+            else{
+                const roll = rollStat(state.lifeSupport)
+                if(roll > 3){
+                    modifyStat("power", 1)
+                    resolution = hostileEncounters[1].resolutions[1].pass
+                }
+                else if(roll === 0){
+                    const damage = rollDice(2)
+                    resolution = damagePhysicalComponents(damage, hostileEncounters[1].resolutions[1])
+                }
+                else{
+                    const damage = rollDice(1)
+                    resolution = damagePhysicalComponents(damage, hostileEncounters[1].resolutions[1])
+                }
+            }
         }
         
 

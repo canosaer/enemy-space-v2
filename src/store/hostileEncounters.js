@@ -46,7 +46,7 @@ let hostileEncounters = [
             {   pass: "After an hour of careful shooting, you manage to escape the minefield without taking damage. You feel you've gotten a lot better with your autocannon. Your weapons are improved!",
                 fail: "You fire away, but it's difficult to detonate the mines without taking damage to your ship. You ship has plenty of scars to show for it once you finally make it to the end of the minefield.",
             },
-            {   pass: "You overload your reactor and emit a pulse wave that detonates all the mines at once. After that, it's smooth sailing again and you find that pulse wave let off some pressure that was building up in the reactor. Your power system is improved!",
+            {   pass: "You overload your reactor and emit a pulse wave that detonates all the mines at once. After that, it's smooth sailing again and you find that the pulse wave let off some pressure that was building up in the reactor. Your power system is improved!",
                 fail: "You overload your reactor and emit a pulse wave that detonates all the mines at once. The explosion is a lot bigger than you thought, and your ship is rocked by the massive detonation.",
             },
         ], 
