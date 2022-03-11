@@ -136,7 +136,7 @@ export default function EncounterScene() {
                 }
                 else if(roll>1 && roll <4){
                     const damage = rollDice(1)
-                    resolution = damageSystems(damage, civilianEncounters[0].resolutions[1])
+                    resolution = damageSystems(rollDice(1), civilianEncounters[0].resolutions[1])
                 }
                 else{
                     resolution = civilianEncounters[0].resolutions[1].fail
@@ -280,6 +280,46 @@ export default function EncounterScene() {
                 else{
                     const damage = rollDice(1)
                     resolution = damagePhysicalComponents(damage, hostileEncounters[1].resolutions[1])
+                }
+            }
+        }
+        else if(encounter.id === "h02"){
+            if(choice === "Clear A Path"){
+                const roll = rollStat(state.weapons)
+                if(roll >2){
+                    modifyStat("weapons", 1)
+                    resolution = hostileEncounters[2].resolutions[0].pass
+                }
+                else if(roll === 0){
+                    const damage = rollDice(2)
+                    resolution = damagePhysicalComponents(damage, hostileEncounters[2].resolutions[0])
+                }
+                else{
+                    const damage = rollDice(1)
+                    resolution = damagePhysicalComponents(damage, hostileEncounters[2].resolutions[0])
+                }
+            }
+            else{
+                const roll = rollStat(state.power)
+                if(roll>4){
+                    modifyStat("power", 1)
+                    resolution = hostileEncounters[2].resolutions[1].pass
+                }
+                else if(roll >1 && roll<5){
+                    modifyStat("weapons", -1)
+                    resolution = hostileEncounters[2].resolutions[1].fail + " You take damage to your weapons!"
+                }
+                else if(roll === 1){
+                    modifyStat("weapons", -1)
+                    modifyStat("engines", -1)
+                    resolution = hostileEncounters[2].resolutions[1].fail + " You take damage to your weapons and engines!"
+                }
+                else{
+                    modifyStat("weapons", -1)
+                    modifyStat("engines", -1)
+                    modifyStat("power", -1)
+                    modifyStat("lifeSupport", -1)
+                    resolution = hostileEncounters[2].resolutions[1].fail + " You take damage to all your systems!"
                 }
             }
         }
