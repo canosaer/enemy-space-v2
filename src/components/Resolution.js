@@ -20,13 +20,7 @@ export default function Resolution() {
         }
         
         dispatch({type:'UPDATE_CURRENT', payload: initial})
-        dispatch({type:'UPDATE_WEAPONS', payload: 4})
-        dispatch({type:'UPDATE_ENGINES', payload: 4})
-        dispatch({type:'UPDATE_LIFESUPPORT', payload: 4})
-        dispatch({type:'UPDATE_POWER', payload: 4})
-        dispatch({type:'UPDATE_ENCOUNTER', payload: null})
-        dispatch({type:'UPDATE_RESOLUTION', payload: null})
-        dispatch({type:'UPDATE_GAME_OVER', payload: false})
+        // dispatch({type:'RESET_GAME', payload: null})
 
         civilianEncounters.map((civilianEncounter, i) => {
             civilianEncounter.available = true

@@ -45,6 +45,17 @@ const reducer = (state, action) => {
                 ...state,
                 gameOver: action.payload
             }
+        case 'RESET_GAME':
+            return{
+                ...state,
+                weapons: 4,
+                lifeSupport: 4,
+                engines: 4,
+                power: 4,
+                encounter: action.payload,
+                resolution: action.payload,
+                gameOver: false
+            }
         default: 
             return state
     }

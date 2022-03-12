@@ -1,7 +1,6 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react'
 import dots from '../store/dots'
 import lines from '../store/lines'
-// import ShortUniqueId from 'short-unique-id'
 import { Link } from 'react-router-dom'
 import {Context} from '../store/store'
 
@@ -9,11 +8,13 @@ export default function MapDisplay() {
 
     const [sectorMap, setSectorMap] = useState([])
     const [state, dispatch] = useContext(Context)
-    console.log(state)
+    // console.log(state)
 
     useEffect(() => {
-        if(!sectorMap[0]){
-            buildMap(null)
+        if(!sectorMap[0]) buildMap(null)
+        if(state.gameOver){
+            updateDots('reset')
+            dispatch({type:'RESET_GAME', payload: null})
         }
         
     }, [sectorMap]);
@@ -43,27 +44,36 @@ export default function MapDisplay() {
     })
 
     const updateDots = (newCurrent) => {
-        let newActiveDots = []
-        dots.map((dot, i) => {
-            if(dot.interactionClass === "map__dot_current") dot.interactionClass = "map__dot_unavailable"
-            else if(dot.interactionClass === "map__dot_active"){
-                if(dot.coord === newCurrent){
-                    dot.interactionClass = "map__dot_current"
-                    newActiveDots = dot.connections
+        if(newCurrent === 'reset'){
+            dots.map((dot, i) => {
+                if(i===0) dot.interactionClass = "map__dot_current"
+                else if(i===1) dot.interactionClass = "map__dot_active"
+                else if(i===2) dot.interactionClass = "map__dot_active"
+                else dot.interactionClass = "map__dot_available"
+            })
+        }
+        else{
+            let newActiveDots = []
+            dots.map((dot, i) => {
+                if(dot.interactionClass === "map__dot_current") dot.interactionClass = "map__dot_unavailable"
+                else if(dot.interactionClass === "map__dot_active"){
+                    if(dot.coord === newCurrent){
+                        dot.interactionClass = "map__dot_current"
+                        newActiveDots = dot.connections
+                    }
+                    else dot.interactionClass = "map__dot_unavailable"
                 }
-                else dot.interactionClass = "map__dot_unavailable"
-            }
-            if(dot.interactionClass === "map__dot_available"){
-                if(parseInt(dot.coord[0]) <= parseInt(newCurrent[0])) dot.interactionClass = "map__dot_unavailable"
-                else{
-                    newActiveDots.forEach(newActive => {
-                        if(dot.coord === newActive) dot.interactionClass = "map__dot_active"
-                    });
+                if(dot.interactionClass === "map__dot_available"){
+                    if(parseInt(dot.coord[0]) <= parseInt(newCurrent[0])) dot.interactionClass = "map__dot_unavailable"
+                    else{
+                        newActiveDots.forEach(newActive => {
+                            if(dot.coord === newActive) dot.interactionClass = "map__dot_active"
+                        });
+                    }
                 }
-            }
-            // if(dot.interactionClass === "map__dot_available" && dot.coord[0] === newCurrent[0]) dot.interactionClass = "map__dot_unavailable"
-        })
-
+                // if(dot.interactionClass === "map__dot_available" && dot.coord[0] === newCurrent[0]) dot.interactionClass = "map__dot_unavailable"
+            })
+        }
     }
 
     return (

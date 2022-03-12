@@ -1,8 +1,8 @@
-const dots = [
+var dots = [
     {   coord: "1",
         class: "map__dot map__dot_civilian map__dot_1",
         interactionClass: "map__dot_current",
-        connections: ["2a", "3b"],
+        connections: ["2a", "2b"],
     },
     {   coord: "2a",
         class: "map__dot map__dot_civilian map__dot_2a",
