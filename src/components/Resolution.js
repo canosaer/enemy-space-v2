@@ -11,6 +11,10 @@ export default function Resolution() {
     const resetEncounter = () => {
         dispatch({type:'UPDATE_ENCOUNTER', payload: null})
         dispatch({type:'UPDATE_RESOLUTION', payload: null})
+        if(state.current.coord==='6'){
+            resetGame()
+            dispatch({type:'UPDATE_WIN', payload: true})
+        }
     }
 
     const resetGame = () => {
@@ -20,7 +24,6 @@ export default function Resolution() {
         }
         
         dispatch({type:'UPDATE_CURRENT', payload: initial})
-        // dispatch({type:'RESET_GAME', payload: null})
 
         civilianEncounters.map((civilianEncounter, i) => {
             civilianEncounter.available = true

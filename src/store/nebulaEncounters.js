@@ -10,7 +10,7 @@ let nebulaEncounters = [
         buttons: [ "Fire Your Afterburners", "Emit Gravitational Wave" ],
         resolutions:[
             {   pass: "You punch the afterburners and your ship groans violently against the pull of the singularity until finally it breaks free. Your afterburners draw in some of the dust from the nebula, which happens to contain elements you can use for fuel. Your engines are improved!",
-                fail: "You punch the afterburners and your ship groans violently against the pull of the singularity until finally it breaks free. The strain on your ship takes a toll on your systems.",
+                fail: "You punch the afterburners and your ship groans violently against the pull of the singularity until finally it breaks free. The strain takes a toll on your ship's systems.",
             },
             {   pass: "The gravitational pulse spreads out from your ship in a wave, knocking you free from the singularity's pull. A strange energy is returned from the singularity, washing over your ship. Your power system is improved!",
                 fail: "The gravitational pulse spreads out from your ship in a wave, knocking you free from the singularity's pull. A strange energy is returned from the singularity, washing over your ship.",

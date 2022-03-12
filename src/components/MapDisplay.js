@@ -16,16 +16,19 @@ export default function MapDisplay() {
     useEffect(() => {
         if(!sectorMap[0]) buildMap(null)
         if(state.gameOver){
-            updateDots('reset')
-            dispatch({type:'RESET_GAME', payload: null})
+            resetData()
         }
         else if(state.win){
-            updateDots('reset')
-            dispatch({type:'RESET_GAME', payload: null})
+            resetData()
             navigate('/win')
         }
         
     }, [sectorMap]);
+
+    const resetData = () => {
+        updateDots('reset')
+        dispatch({type:'RESET_GAME', payload: null})
+    }
 
     const buildMap = useCallback((path) => {
         let tempMap = []
@@ -81,6 +84,7 @@ export default function MapDisplay() {
                 }
                 // if(dot.interactionClass === "map__dot_available" && dot.coord[0] === newCurrent[0]) dot.interactionClass = "map__dot_unavailable"
             })
+            dispatch({type:'UPDATE_BEGIN', payload: false})
         }
     }
 

@@ -27,8 +27,8 @@ let hostileEncounters = [
         choices: "You can punch the afterburners to try to outrun it, or power down your life support to try to hide from its scanners...",
         buttons: [ "Punch The Afterburners", "Hide From Scanners" ],
         resolutions:[
-            {   pass: "You set a course in the opposite direction punch the afterburners! The dreadnought fires a volley of missiles at you, but you nimbly evade them. You manage to scan the dreadnought's systems before you get away and find useful schematics. Your engines are improved!",
-                fail: "You set a course in the opposite direction punch the afterburners! The dreadnought fires a volley of missiles at you, and gets in a solid hit before you manage to get away.",
+            {   pass: "You set a course in the opposite direction and punch the afterburners! The dreadnought fires a volley of missiles at you, but you nimbly evade them. You manage to scan the dreadnought's systems before you get away and find useful schematics. Your engines are improved!",
+                fail: "You set a course in the opposite direction and punch the afterburners! The dreadnought fires a volley of missiles at you, and gets in a solid hit before you manage to get away.",
             },
             {   pass: "You power down your life support systems and stay absolutely still as the dreadnought passes by. It eventually gets far enough away that you can power back up and continue on your way. Just before it's out of range, you scan the dreanought's systems and find useful schematics. Your life support system is improved!",
                 fail: "You power down your life support systems and stay absolutely still as the dreadnought passes by. It eventually gets far enough away that you can power back up and continue on your way. A quick scan of your ship's systems shows that a few components froze over while you were powered down.",

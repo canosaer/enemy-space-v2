@@ -352,7 +352,7 @@ export default function EncounterScene() {
                 <h2 className="scene__heading">{encounter.heading}</h2>
                 <figure className="scene__image-slot">
                     <img className="scene__image" src={encounter.image} id={encounter.id} alt="encounter image" />
-                </figure>      
+                </figure>
                 <div className="scene__text">
                     <p className="scene__event">{encounter.event}</p>
                     <p className="scene__choices">{encounter.choices}</p>

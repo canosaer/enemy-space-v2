@@ -61,6 +61,16 @@
   color: white;
 }
 
+@mixin focus-text{
+  color: white;
+  text-align: center;
+  line-height: 1.4;
+  margin: 0rem 2rem 2rem;
+  font-size: 1.25rem;
+  max-width: 50rem;
+  justify-self: center;
+}
+
 @mixin dot-positions{
   &_1{
     grid-column: 1/2;

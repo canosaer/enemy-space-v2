@@ -7,8 +7,6 @@ export default function Title() {
     const [state, dispatch] = useContext(Context)
     const destination = state.encounter ? "/encounter" : "/map"
 
-    // console.log(state)
-
     return(
         <main className="title-screen">
             <Link to={destination} className="title-screen__link">

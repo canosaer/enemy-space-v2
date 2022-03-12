@@ -18,6 +18,7 @@ export default function Map() {
                 <MapHeader />
                 <MapDisplay />
             </figure>
+            {state.begin ? <p className="map__instructions">You are carrying vital intelligence for the Resistance! You must make it through the sector alive to deliver the intelligence and turn the tide of the war.</p> : null}
         </main>
     )
 }

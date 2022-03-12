@@ -11,6 +11,7 @@ const data = {
     power: 3,
     engines: 3,
     win: false,
+    begin: true,
 }
 
 export default data
