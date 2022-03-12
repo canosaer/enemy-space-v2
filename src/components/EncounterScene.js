@@ -7,9 +7,9 @@ import {getRandomInteger, resolveAttack, rollStat, rollDice} from '../utilities'
 import Resolution from '../components/Resolution'
 
 export default function EncounterScene() {
-    // const [resolution, setResolution] = useState(null)
     const [encounter, setEncounter] = useState(null)
     const [state, dispatch] = useContext(Context)
+    const [choicesActive, setChoicesActive] = useState(true)
 
     useEffect(() => {
         if(!encounter){
@@ -36,6 +36,18 @@ export default function EncounterScene() {
             })
         }
     }, [encounter]);
+
+    useEffect(() => {
+        if(state.weapons < 1 || state.engines < 1 || state.lifeSupport < 1 || state.power < 1 ){
+            state.weapons = 999
+            state.engines = 999
+            state.lifeSupport = 999
+            state.power = 999
+
+            dispatch({type:'UPDATE_GAME_OVER', payload: true})
+
+        }
+    }, [state])
 
     // useEffect(() => {
     //     console.log(state)
@@ -109,6 +121,7 @@ export default function EncounterScene() {
     }
 
     const resolveEncounter = (choice) => {
+        setChoicesActive(false)
         let resolution = ""
         if(encounter.id === "c00"){
             if(choice==="Investigate"){
@@ -172,17 +185,17 @@ export default function EncounterScene() {
             else{
                 let roll = rollStat(state.engines)
                 if(roll > 3){
-                    modifyStat("weapons", 1)
-                    resolution = civilianEncounters[0].resolutions[1].pass
+                    modifyStat("engines", 1)
+                    resolution = civilianEncounters[1].resolutions[1].pass
                 }
                 else if(roll>0 && roll<4){
                     modifyStat("weapons", -1)
-                    resolution = civilianEncounters[0].resolutions[1].fail + ' You take damage to your weapons!'
+                    resolution = civilianEncounters[1].resolutions[1].fail + ' You take damage to your weapons!'
                 }
                 else{
                     modifyStat("weapons", -1)
                     modifyStat("engines", -1)
-                    resolution = civilianEncounters[0].resolutions[1].fail + ' You take damage to your weapons and engines!'
+                    resolution = civilianEncounters[1].resolutions[1].fail + ' You take damage to your weapons and engines!'
                 }
             }
         }
@@ -243,11 +256,11 @@ export default function EncounterScene() {
                 }
                 else if(roll > 0 && roll < 4){
                     const damage = rollDice(1)
-                    resolution = damageSystems(damage, hostileEncounters[0].resolutions[1].fail)
+                    resolution = damageSystems(damage, hostileEncounters[0].resolutions[1])
                 }
                 else{
                     const damage = rollDice(2)
-                    resolution = damageSystems(damage, hostileEncounters[0].resolutions[1].fail)
+                    resolution = damageSystems(damage, hostileEncounters[0].resolutions[1])
                 }
             }
         }
@@ -255,7 +268,7 @@ export default function EncounterScene() {
             if(choice === "Punch The Afterburners"){
                 const roll = rollStat(state.engines)
                 if(roll > 3){
-                    modifyStat("engines", 1)
+                    modifyStat("lifeSupport", 1)
                     resolution = hostileEncounters[1].resolutions[0].pass
                 }
                 else if(roll === 0){
@@ -329,6 +342,9 @@ export default function EncounterScene() {
     }
 
     if(encounter){
+        const activeChoiceClass = "scene__button scene__button_action"
+        const inactiveChoiceClass = "scene__button scene__button_action scene__button_inactive"
+
         return(
             <section className="scene">
                 <h2 className="scene__heading">{encounter.heading}</h2>
@@ -339,8 +355,8 @@ export default function EncounterScene() {
                     <p className="scene__event">{encounter.event}</p>
                     <p className="scene__choices">{encounter.choices}</p>
                     <div className="scene__button-row">
-                        <button className="scene__button scene__button_action scene__button_a" onClick={() => resolveEncounter(encounter.buttons[0])}>{encounter.buttons[0]}</button>
-                        <button className="scene__button scene__button_action scene__button_b" onClick={() => resolveEncounter(encounter.buttons[1])}>{encounter.buttons[1]}</button>
+                        <button className={choicesActive ? activeChoiceClass : inactiveChoiceClass} onClick={() => choicesActive ? resolveEncounter(encounter.buttons[0]) : null}>{encounter.buttons[0]}</button>
+                        <button className={choicesActive ? activeChoiceClass : inactiveChoiceClass} onClick={() => choicesActive ? resolveEncounter(encounter.buttons[1]) : null}>{encounter.buttons[1]}</button>
                     </div>
                     <Resolution />
                 </div>

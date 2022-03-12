@@ -9,6 +9,7 @@ export default function MapDisplay() {
 
     const [sectorMap, setSectorMap] = useState([])
     const [state, dispatch] = useContext(Context)
+    console.log(state)
 
     useEffect(() => {
         if(!sectorMap[0]){

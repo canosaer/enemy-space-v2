@@ -40,6 +40,11 @@ const reducer = (state, action) => {
                 ...state,
                 engines: action.payload
             }
+        case 'UPDATE_GAME_OVER':
+            return{
+                ...state,
+                gameOver: action.payload
+            }
         default: 
             return state
     }

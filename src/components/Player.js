@@ -6,12 +6,13 @@ export default function Player() {
     const [state, dispatch] = useContext(Context)
 
     const translateStatus = (value) => {
-        if(value > 5) return "Superior"
+        if(value > 5 && value < 999) return "Superior"
         else if(value === 5) return "Improved"
         else if(value === 4) return "Operational"
         else if(value === 3) return "Damaged"
         else if(value === 2) return "Impaired"
         else if(value === 1) return "Critical"
+        else if(value === 999) return "Destroyed"
     }
 
     const weapons = translateStatus(state.weapons)

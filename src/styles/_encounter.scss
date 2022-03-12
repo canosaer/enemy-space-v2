@@ -152,6 +152,14 @@
                 background: rgb(242, 83, 99);
             }
         }
+
+        &_inactive{
+            cursor: unset;
+
+            &:hover{
+                background: #ff8570;
+            }
+        }
     }
 
     &__continue{
@@ -176,8 +184,34 @@
     object-position: 50% 25%;
 }
 
+#n00{
+    width: 45%;
+    left: 28%;
+}
+
+#h00{
+    width: 30%;
+    left: 33%;
+}
+
+#h01{
+    width: 70%;
+    left: 15%;
+}
+
+#h02{
+    width: 40%;
+    left: 29%;
+}
+
+
+
 .resolution{
     &__text{
       font-weight: bold;
+
+      &_game-over{
+          margin-top: 1rem;
+      }
     }
 }
