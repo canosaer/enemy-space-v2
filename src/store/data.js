@@ -6,10 +6,10 @@ const data = {
     encounter: null,
     resolution: null,
     gameOver: false,
-    weapons: 1,
-    lifeSupport: 1,
-    power: 1,
-    engines: 1,
+    weapons: 3,
+    lifeSupport: 3,
+    power: 3,
+    engines: 3,
 }
 
 export default data

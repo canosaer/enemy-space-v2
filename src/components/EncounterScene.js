@@ -207,7 +207,7 @@ export default function EncounterScene() {
                     resolution = nebulaEncounters[0].resolutions[0].pass
                 }
                 else if(roll>1 && roll<4){
-                    modifyStat("weapons", -1)
+                    modifyStat("lifeSupport", -1)
                     resolution = nebulaEncounters[0].resolutions[0].fail + ' You take damage to your life support system!'
                 }
                 else{
@@ -228,7 +228,7 @@ export default function EncounterScene() {
                         resolution = nebulaEncounters[0].resolutions[1].fail + ' Your systems glitch for a minute, but you are able to repair them and continue on your way.'
                     }
                     else{
-                        damagePhysicalComponents(damage, nebulaEncounters[0].resolutions[1])
+                        resolution = damagePhysicalComponents(damage, nebulaEncounters[0].resolutions[1])
                     }
                 }
             }
@@ -289,10 +289,12 @@ export default function EncounterScene() {
                 else if(roll === 0){
                     const damage = rollDice(2)
                     resolution = damagePhysicalComponents(damage, hostileEncounters[1].resolutions[1])
+                    if(damage === 0) resolution = resolution + 'You make repairs and continue on your way.'
                 }
                 else{
                     const damage = rollDice(1)
                     resolution = damagePhysicalComponents(damage, hostileEncounters[1].resolutions[1])
+                    if(damage === 0) resolution = resolution + 'You make repairs and continue on your way.'
                 }
             }
         }
