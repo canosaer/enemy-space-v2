@@ -9,7 +9,7 @@ import {
 import Title from './views/Title'
 import Map from './views/Map'
 import Encounter from './views/Encounter'
-import GameOver from './views/GameOver'
+import Win from './views/Win'
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<Title />} />
           <Route path="/map" element={<Map />} />
           <Route path="/encounter" element={<Encounter />} />
-          <Route path="/game-over" element={<GameOver />} />
+          <Route path="/win" element={<Win />} />
         </Routes>
       </BrowserRouter>
     </>

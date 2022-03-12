@@ -10,6 +10,7 @@ const data = {
     lifeSupport: 3,
     power: 3,
     engines: 3,
+    win: false,
 }
 
 export default data

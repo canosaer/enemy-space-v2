@@ -53,6 +53,14 @@
   padding: 0.5rem 1rem;
 }
 
+@mixin heading{
+  font-family: var(--title);
+  font-size: 2.25rem;
+  justify-self: center;
+  margin-top: 2.5rem;
+  color: white;
+}
+
 @mixin dot-positions{
   &_1{
     grid-column: 1/2;

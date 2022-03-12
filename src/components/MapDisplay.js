@@ -1,13 +1,16 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react'
 import dots from '../store/dots'
 import lines from '../store/lines'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {Context} from '../store/store'
 
 export default function MapDisplay() {
 
     const [sectorMap, setSectorMap] = useState([])
     const [state, dispatch] = useContext(Context)
+
+    let navigate = useNavigate();
+
     // console.log(state)
 
     useEffect(() => {
@@ -15,6 +18,11 @@ export default function MapDisplay() {
         if(state.gameOver){
             updateDots('reset')
             dispatch({type:'RESET_GAME', payload: null})
+        }
+        else if(state.win){
+            updateDots('reset')
+            dispatch({type:'RESET_GAME', payload: null})
+            navigate('/win')
         }
         
     }, [sectorMap]);
@@ -84,39 +92,35 @@ export default function MapDisplay() {
 
                 if(element.interactionClass && element.interactionClass.includes('active')){
                     return(
-                        <>
-                            <Link key={key} to="/encounter" data-coord={element.coord}
+                        <Link key={key} to="/encounter" data-coord={element.coord}
 
-                                onMouseEnter={(e) => {
-                                    let arg=`${state.current.coord}-${e.target.getAttribute('data-coord')}`
-                                    buildMap(arg)
-                                }}
+                            onMouseEnter={(e) => {
+                                let arg=`${state.current.coord}-${e.target.getAttribute('data-coord')}`
+                                buildMap(arg)
+                            }}
 
-                                onMouseLeave={() => {
-                                    buildMap(null)
-                                }}
+                            onMouseLeave={() => {
+                                buildMap(null)
+                            }}
 
-                                onClick={(e) => {
-                                    let target = {
-                                        coord: e.target.getAttribute('data-coord'),
-                                        class: e.target.className,
-                                    }
-                                    dispatch({type:'UPDATE_CURRENT', payload: target})
-                                    updateDots(target.coord)
-                                }}
+                            onClick={(e) => {
+                                let target = {
+                                    coord: e.target.getAttribute('data-coord'),
+                                    class: e.target.className,
+                                }
+                                dispatch({type:'UPDATE_CURRENT', payload: target})
+                                updateDots(target.coord)
+                            }}
 
-                                className={`${element.class} ${element.interactionClass}`}
+                            className={`${element.class} ${element.interactionClass}`}
 
-                            >
-                            </Link>
-                        </>
+                        >
+                        </Link>
                     )
                 }
                 else{
                     return(
-                        <>
-                            <div key={key} className={element.interactionClass ? `${element.class} ${element.interactionClass}` : element.class}></div>
-                        </>
+                        <div key={key} className={element.interactionClass ? `${element.class} ${element.interactionClass}` : element.class}></div>
                     )
                 }
 
